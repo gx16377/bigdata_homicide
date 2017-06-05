@@ -1,10 +1,10 @@
 %% 文件参数
-f_1=5*12*45;
-f_2=25*12*45;
-f_3=5*12*45;
-f_n='NNdata/State.csv';
+f_1=5*12*3;
+f_2=25*12*3;
+f_3=5*12*3;
+f_n='NNdata/VictimSex.csv';
 y_range=1;%结果是第几列
-x_range=5:14;%使用的feature
+x_range=[2,5:14];%使用的feature
 pca_n=0;
 map=0;
 %% 读训练集数据
@@ -21,15 +21,15 @@ if pca_n>0
 	x=(x'*coef(:,1:pca_n))';
 end
 %% 设置神经网络参数
-hidden=[6];%隐含层
+hidden=[5];%隐含层
 net=newff(x,y,hidden);
 net.trainFcn='trainlm';
 if strcmp(net.trainFcn,'trainlm')
     %普通的训练函数
     net.trainParam.epochs=45;%最大迭代次数
-    net.trainParam.lr=1e-9;%学习率
+    net.trainParam.lr=1e-10;%学习率
     net.trainParam.goal=10;%目标结果
-%     net.trainParam.max_fail=1;%如果验证集连续几次迭代下降就停止，默认6
+%     net.trainParam.max_fail=3;%如果验证集连续几次迭代下降就停止，默认6
     net.divideFcn='divideblock';
     net.divideParam.trainRatio=0.85;
     net.divideParam.valRatio=0.15;
@@ -71,4 +71,4 @@ error_nn=mean(abs(y_test-output_test))
 
 res=[data_test(:,2:4),data_test(:,1),output_test'];
 NETIW=net.IW;
-csvwrite('res/state_res.csv',res);
+csvwrite('res/VSex_res.csv',res);

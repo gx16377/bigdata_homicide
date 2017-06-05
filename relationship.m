@@ -1,8 +1,8 @@
 %% 文件参数
-f_1=5*12*45;
-f_2=25*12*45;
-f_3=5*12*45;
-f_n='NNdata/State.csv';
+f_1=5*12*28;
+f_2=25*12*28;
+f_3=5*12*28;
+f_n='NNdata/Relationship.csv';
 y_range=1;%结果是第几列
 x_range=5:14;%使用的feature
 pca_n=0;
@@ -21,7 +21,7 @@ if pca_n>0
 	x=(x'*coef(:,1:pca_n))';
 end
 %% 设置神经网络参数
-hidden=[6];%隐含层
+hidden=[3];%隐含层
 net=newff(x,y,hidden);
 net.trainFcn='trainlm';
 if strcmp(net.trainFcn,'trainlm')
@@ -71,4 +71,4 @@ error_nn=mean(abs(y_test-output_test))
 
 res=[data_test(:,2:4),data_test(:,1),output_test'];
 NETIW=net.IW;
-csvwrite('res/state_res.csv',res);
+csvwrite('res/relationship_res.csv',res);

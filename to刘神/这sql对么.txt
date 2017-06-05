@@ -1,0 +1,1 @@
+select Year,State,[Victim Sex], count(*) from dbo.database1 group by Year,State,[Victim Sex] order by [Victim Sex] asc,Year asc,State asc

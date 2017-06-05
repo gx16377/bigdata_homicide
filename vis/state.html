@@ -41,7 +41,7 @@
 					trigger: 'axis'
 				},
 				legend: {
-					data:['案件数量']
+					data:['案件数量','杀手为男','杀手为女','受害者为男','受害者为女']
 				},
 				toolbox: {
 					show : true,
@@ -75,6 +75,70 @@
 						name:'案件数量',
 						type:'line',
 						data:dataMap.States[id],
+						markPoint : {
+							data : [
+								{type : 'max', name: '最大值'},
+								{type : 'min', name: '最小值'}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name: '平均值'}
+							]
+						}
+					},
+					{
+						name:'杀手为男',
+						type:'line',
+						data:dataMap.StatesPMale[id],
+						markPoint : {
+							data : [
+								{type : 'max', name: '最大值'},
+								{type : 'min', name: '最小值'}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name: '平均值'}
+							]
+						}
+					},
+					{
+						name:'杀手为女',
+						type:'line',
+						data:dataMap.StatesPFemale[id],
+						markPoint : {
+							data : [
+								{type : 'max', name: '最大值'},
+								{type : 'min', name: '最小值'}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name: '平均值'}
+							]
+						}
+					},
+					{
+						name:'受害者为男',
+						type:'line',
+						data:dataMap.StatesVMale[id],
+						markPoint : {
+							data : [
+								{type : 'max', name: '最大值'},
+								{type : 'min', name: '最小值'}
+							]
+						},
+						markLine : {
+							data : [
+								{type : 'average', name: '平均值'}
+							]
+						}
+					},
+					{
+						name:'受害者为女',
+						type:'line',
+						data:dataMap.StatesVFemale[id],
 						markPoint : {
 							data : [
 								{type : 'max', name: '最大值'},
